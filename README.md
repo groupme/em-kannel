@@ -1,3 +1,41 @@
+# Kannel SMS delivery for EventMachine
+
+# Install
+
+      gem "em-kannel", :git => "git://github.com/groupme/em-kannel.git"
+
+# Usage
+
+      require "em-kannel"
+
+      kannel = EM::Kannel.new(
+        username: "user",
+        password: "password",
+        url:      "http://www.example.com/sendsms"
+      )
+
+
+      EM.run do
+        kannel.sendsms(
+          from_number: "+12105551010",
+          to_numbers: "+12125551212 +17185551212",
+          text: "Hello World"
+        )
+        EM.stop
+      end
+
+## Callbacks
+
+You can pass a block to process the response body:
+
+      kannel.sendsms(message_options) do |response|
+        if response.success?
+          log("Hooray!")
+        else
+          log("Boo! #{response.body}")
+        end
+      end
+
 # Testing
 
 To test em-kannel's deliveries, start by simply requiring this file after EM::Kannel has already
@@ -18,3 +56,7 @@ list:
       message = EM::Kannel.deliveries.first
       message.should be_an_instance_of(EM::Kannel::Message)
       message.text.should == ...
+
+# Legal
+
+See LICENSE for details
