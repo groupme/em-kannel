@@ -42,23 +42,6 @@ describe EventMachine::Kannel::Configuration do
     end
   end
 
-  describe "#validate!" do
-    context "invalid" do
-      it "raises an ArgumentError" do
-        expect {
-          EM::Kannel::Configuration.new.validate!
-        }.to raise_exception(ArgumentError, /Invalid EventMachine::Kannel::Configuration/)
-      end
-    end
-
-    context "valid" do
-      it "returns true" do
-        configuration = EM::Kannel::Configuration.new(attributes)
-        configuration.validate!.should be_true
-      end
-    end
-  end
-
   describe "#as_query" do
     it "returns a hash for use in the HTTP request" do
       configuration = EM::Kannel::Configuration.new(attributes)
