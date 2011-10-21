@@ -20,6 +20,10 @@ module EventMachine
         @http.response
       end
 
+      def error
+        @http.error
+      end
+
       private
 
       def compute_duration(start)
