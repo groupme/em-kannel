@@ -8,10 +8,11 @@ require "em-kannel/message"
 require "em-kannel/log_message"
 require "em-kannel/client"
 require "em-kannel/response"
-require "em-kannel/version"
 
 module EventMachine
   class Kannel
+    VERSION = "0.1.0"
+
     attr_accessor :configuration
 
     def initialize(configuration_options={})
