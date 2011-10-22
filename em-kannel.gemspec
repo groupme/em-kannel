@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "eventmachine", ">= 1.0.0.beta.3"
   s.add_dependency "em-http-request", ">= 1.0.0.beta.4"
-  s.add_dependency "activemodel", "~> 3.1.1"
+  s.add_dependency "activemodel", "~> 3.1"
 
   s.add_development_dependency "rspec", "~> 2.7.0"
   s.add_development_dependency "webmock", "~> 1.7.7"
