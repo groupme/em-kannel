@@ -7,7 +7,7 @@ describe EventMachine::Kannel do
         expect {
           kannel = EM::Kannel.new({})
           kannel.send_sms({})
-        }.to raise_exception(ArgumentError, /Invalid EventMachine::Kannel::Configuration/)
+        }.to raise_exception(ArgumentError, /Invalid Configuration/)
       end
     end
   end

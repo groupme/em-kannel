@@ -33,7 +33,8 @@ module EventMachine
       message = Message.new(message_options)
       message.validate!
 
-      Client.new(message, configuration).deliver(&block)
+      client = Client.new(message, configuration)
+      client.deliver(&block)
     end
   end
 end
