@@ -3,24 +3,20 @@ module EventMachine
     class Message
       include Validations
 
-      attr_accessor :text, :from_number, :to_numbers
+      attr_accessor :body, :from, :to
 
-      validates :text, presence: true, length: { maximum: 160 }
-      validates :from_number, presence: true
-      validates :to_numbers, presence: true
+      validates :body, presence: true, length: { maximum: 160 }
+      validates :from, presence: true
+      validates :to, presence: true
 
       def initialize(attributes={})
-        self.from_number = attributes[:from_number]
-        self.to_numbers = attributes[:to_numbers]
-        self.text = attributes[:text]
+        self.from = attributes[:from]
+        self.to   = attributes[:to]
+        self.body = attributes[:body]
       end
 
       def as_query
-        {
-          from: from_number,
-          to:   to_numbers,
-          text: text
-        }
+        { from: from,to: to, text: body }
       end
     end
   end

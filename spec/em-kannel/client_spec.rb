@@ -12,9 +12,9 @@ describe EventMachine::Kannel::Client do
 
     let(:message) do
       EM::Kannel::Message.new(
-        from_number: "+12125551212",
-        to_numbers: "+17185551212",
-        text: "testing"
+        from: "+12125551212",
+        to:   "+17185551212",
+        body: "testing"
       )
     end
 
