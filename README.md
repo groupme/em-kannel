@@ -17,9 +17,9 @@
 
       EM.run do
         kannel.sendsms(
-          from_number: "+12105551010",
-          to_numbers: "+12125551212 +17185551212",
-          text: "Hello World"
+          from: "+12105551010",
+          to: "+12125551212 +17185551212",
+          body: "Hello World"
         )
         EM.stop
       end
@@ -55,7 +55,7 @@ list:
 
       message = EM::Kannel.deliveries.first
       message.should be_an_instance_of(EM::Kannel::Message)
-      message.text.should == ...
+      message.body.should == ...
 
 # Legal
 

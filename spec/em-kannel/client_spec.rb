@@ -25,7 +25,7 @@ describe EventMachine::Kannel::Client do
           password: "pass",
           from: "+12125551212",
           to: "+17185551212",
-          text: "testing"
+          body: "testing"
         }
       )
 
