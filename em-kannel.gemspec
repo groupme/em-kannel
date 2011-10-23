@@ -1,4 +1,5 @@
 $:.push File.expand_path("../lib", __FILE__)
+
 require "em-kannel/version"
 
 Gem::Specification.new do |s|

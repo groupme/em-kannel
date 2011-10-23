@@ -11,8 +11,6 @@ require "em-kannel/response"
 
 module EventMachine
   class Kannel
-    VERSION = "0.1.0"
-
     attr_accessor :configuration
 
     def initialize(configuration_options={})
