@@ -10,6 +10,8 @@ module EventMachine
       validates :to, presence: true
 
       def initialize(attributes={})
+        attributes = attributes.with_indifferent_access
+
         self.from = attributes[:from]
         self.to   = attributes[:to]
         self.body = attributes[:body]

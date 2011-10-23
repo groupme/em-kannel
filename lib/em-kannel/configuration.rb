@@ -15,6 +15,8 @@ module EventMachine
       validates :url, presence: true
 
       def initialize(attributes={})
+        attributes = attributes.with_indifferent_access
+
         self.username         = attributes[:username]
         self.password         = attributes[:password]
         self.url              = attributes[:url]
