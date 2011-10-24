@@ -23,9 +23,9 @@ describe EventMachine::Kannel::Client do
         query: {
           username: "user",
           password: "pass",
-          from: "+12125551212",
-          to: "+17185551212",
-          body: "testing"
+          from:     "+12125551212",
+          to:       "+17185551212",
+          text:     "testing"
         }
       )
 

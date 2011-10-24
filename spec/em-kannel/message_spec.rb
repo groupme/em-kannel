@@ -46,7 +46,7 @@ describe EventMachine::Kannel::Message do
       message.as_query.should == {
         from: "+12125551212",
         to:   ["+17185551212"],
-        body: "hi there"
+        text: "hi there"
       }
     end
   end

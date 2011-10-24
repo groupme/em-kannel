@@ -18,7 +18,7 @@ module EventMachine
       end
 
       def as_query
-        { from: from, to: to, body: body }
+        { from: from, to: to, text: body }
       end
     end
   end
