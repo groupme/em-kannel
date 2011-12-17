@@ -35,5 +35,51 @@ describe EventMachine::Kannel::Client do
 
       stub.should have_been_requested
     end
+
+    context "delivery succeeds" do
+      it "logs the delivery" do
+        uuid = "24b8d670-0ad6-012f-13e0-60c5470504ea"
+
+        stub = stub_request(:get, "http://www.example.com/api").with(
+          query: {
+            username: "user",
+            password: "pass",
+            from:     "+12125551212",
+            to:       "+17185551212",
+            text:     "testing"
+          }).
+          to_return(:status => 202, :body => uuid)
+
+        EM::Kannel.logger.should_receive(:info).with(
+          /CODE=202 FROM=\+12125551212 TO=\+17185551212 BODY=testing RESPONSE=#{uuid} TIME=[0-9]/
+        )
+
+        EM.run_block {
+          EM::Kannel::Client.new(message, configuration).deliver
+        }
+      end
+    end
+
+    context "delivery fails" do
+      it "logs the failure" do
+        stub = stub_request(:get, "http://www.example.com/api").with(
+          query: {
+            username: "user",
+            password: "pass",
+            from:     "+12125551212",
+            to:       "+17185551212",
+            text:     "testing"
+          }).
+          to_return(:status => 404, :body => "API not available")
+
+        EM::Kannel.logger.should_receive(:info).with(
+          /CODE=404 FROM=\+12125551212 TO=\+17185551212 BODY=testing RESPONSE=API not available TIME=[0-9]/
+        )
+
+        EM.run_block {
+          EM::Kannel::Client.new(message, configuration).deliver
+        }
+      end
+    end
   end
 end

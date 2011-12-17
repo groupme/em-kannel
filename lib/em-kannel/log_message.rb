@@ -14,9 +14,11 @@ module EventMachine
       def message
         parts = [
           "CODE=#{@response.status}",
+          "FROM=#{@message.from}",
+          "TO=#{@message.to}",
+          "BODY=#{@message.body[0..100]}",
           "RESPONSE=#{@response.body}",
-          "TIME=#{@response.duration}",
-          "BODY=#{@message.body[0..100]}"
+          "TIME=#{@response.duration}"
         ]
         parts << "ERROR=#{@response.error}" unless @response.success?
 
