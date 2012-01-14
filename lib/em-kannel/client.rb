@@ -19,11 +19,7 @@ module EventMachine
       private
 
       def options
-        {
-          ssl: {
-            verify_peer: configuration.verify_ssl_peer
-          }
-        }
+        { ssl: { verify_peer: configuration.verify_ssl_peer } }
       end
 
       def query

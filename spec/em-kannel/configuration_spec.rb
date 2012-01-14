@@ -7,7 +7,8 @@ describe EventMachine::Kannel::Configuration do
       :password             => "pass",
       :url                  => "http://www.example.com/url",
       :dlr_callback_url     => "http://www.example.com/dlr_callback_url",
-      :dlr_mask             => 1
+      :dlr_mask             => 1,
+      :smsc                 => "Provider"
     }
   end
 
@@ -49,7 +50,8 @@ describe EventMachine::Kannel::Configuration do
         :username   => "user",
         :password   => "pass",
         :"dlr-mask" => 1,
-        :"dlr-url"  => "http://www.example.com/dlr_callback_url"
+        :"dlr-url"  => "http://www.example.com/dlr_callback_url",
+        :smsc       => "Provider"
       }
     end
   end
