@@ -24,6 +24,10 @@ module EventMachine
         @http.error
       end
 
+      def guid
+        body.split(": ").last
+      end
+
       private
 
       def compute_duration(start)
