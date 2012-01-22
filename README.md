@@ -60,7 +60,3 @@ list:
 # Legal
 
 See LICENSE for details
-
-# TODO
-
-* Parse Kannel responses

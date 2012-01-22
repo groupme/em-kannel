@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe EM::Kannel::Response do
   let(:header) { mock(:header, status: "202") }
-  let(:http) { mock(:http_client, response_header: header, response: "OK") }
+  let(:body) { "0: Accepted for delivery: 26ecfeea-6015-4025-bcae-0d0b71467d83" }
+  let(:http) { mock(:http_client, response_header: header, response: body) }
 
   before do
     now = Time.now
@@ -40,7 +41,14 @@ describe EM::Kannel::Response do
   describe "#body" do
     it "returns the body of the response" do
       response = EM::Kannel::Response.new(http)
-      response.body.should == "OK"
+      response.body.should == body
+    end
+  end
+
+  describe "#guid" do
+    it "returns the guid of the response" do
+      response = EM::Kannel::Response.new(http)
+      response.guid.should == "26ecfeea-6015-4025-bcae-0d0b71467d83"
     end
   end
 end
