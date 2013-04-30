@@ -10,10 +10,10 @@ module EventMachine
 
       def deliver(&block)
         start = Time.now.to_f
-        http  = EM::HttpRequest.new(configuration.url, options).get(query: query)
+        request = http.get(query: query, keepalive: true)
 
-        http.callback { callback(http, start, message, &block) }
-        http.errback { callback(http, start, message, &block) }
+        request.callback { callback(request, start, message, &block) }
+        request.errback { callback(requesthttp, start, message, &block) }
       end
 
       private
@@ -33,6 +33,10 @@ module EventMachine
 
         LogMessage.new(message, response).log
         block.call(response) if block_given?
+      end
+
+      def http
+        @http ||= EM::HttpRequest.new(configuration.url, options)
       end
     end
   end
