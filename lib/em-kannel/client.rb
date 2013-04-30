@@ -6,11 +6,17 @@ module EventMachine
       def initialize(message, configuration)
         self.message       = message
         self.configuration = configuration
+        @url = URI.parse(configuration.url)
       end
 
       def deliver(&block)
         start = Time.now.to_f
-        http  = EM::HttpRequest.new(configuration.url, options).get(query: query)
+        http = EventMachine::Protocols::HttpClient.request(
+          :host => @url.host,
+          :port => @url.port,
+          :request => @url.path,
+          :query_string => URI.encode_www_form(query)
+        )
 
         http.callback { callback(http, start, message, &block) }
         http.errback { callback(http, start, message, &block) }
