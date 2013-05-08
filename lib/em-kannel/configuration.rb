@@ -10,7 +10,8 @@ module EventMachine
                     :dlr_mask,
                     :verify_ssl_peer,
                     :smsc,
-                    :coding
+                    :coding,
+                    :charset
 
       validates :username, presence: true
       validates :password, presence: true
@@ -27,6 +28,7 @@ module EventMachine
         self.verify_ssl_peer  = attributes[:verify_ssl_peer]
         self.smsc             = attributes[:smsc]
         self.coding           = attributes[:coding]
+        self.charset          = attributes[:charset]
       end
 
       def as_query
@@ -35,6 +37,7 @@ module EventMachine
         query[:"dlr-url"]  = dlr_callback_url if dlr_callback_url
         query[:smsc]       = smsc if smsc
         query[:coding]     = coding if coding
+        query[:charset]    = charset if charset
         query
       end
     end
