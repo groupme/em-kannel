@@ -15,7 +15,7 @@ module EventMachine
         parts = [
           "CODE=#{@response.status}",
           "FROM=#{@message.from}",
-          "TO=#{@message.to}",
+          "TO=#{Digest::MD5.hexdigest(@message.to.delete(" "))}",
           "BODY=#{@message.body[0..100]}",
           "RESPONSE=#{@response.body}",
           "TIME=#{@response.duration}"
