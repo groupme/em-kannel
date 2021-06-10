@@ -22,7 +22,7 @@ describe EM::Kannel::Validations do
       it "returns true" do
         instance = Model.new
         instance.value = "value"
-        instance.validate!.should be_true
+        instance.validate!.should be true
       end
     end
   end
