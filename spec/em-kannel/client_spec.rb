@@ -51,7 +51,7 @@ describe EventMachine::Kannel::Client do
           to_return(:status => 202, :body => uuid)
 
         EM::Kannel.logger.should_receive(:info).with(
-          /CODE=202 FROM=\+12125551212 TO=78c929715ef3d957ad835697ced0e295 BODY=testing RESPONSE=#{uuid} TIME=[0-9]/
+          /CODE=202 FROM=\+12125551212 TO=78c929715ef3d957ad835697ced0e295 RESPONSE=#{uuid} TIME=[0-9]/
 
         )
 
@@ -74,7 +74,7 @@ describe EventMachine::Kannel::Client do
           to_return(:status => 404, :body => "API not available")
 
         EM::Kannel.logger.should_receive(:info).with(
-          /CODE=404 FROM=\+12125551212 TO=78c929715ef3d957ad835697ced0e295 BODY=testing RESPONSE=API not available TIME=[0-9]/
+          /CODE=404 FROM=\+12125551212 TO=78c929715ef3d957ad835697ced0e295 RESPONSE=API not available TIME=[0-9]/
         )
 
         EM.run_block {

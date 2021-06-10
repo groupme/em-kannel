@@ -1,9 +1,9 @@
 require "spec_helper"
 
 describe EM::Kannel::Response do
-  let(:header) { mock(:header, status: "202") }
+  let(:header) { double(:header, status: "202") }
   let(:body) { "0: Accepted for delivery: 26ecfeea-6015-4025-bcae-0d0b71467d83" }
-  let(:http) { mock(:http_client, response_header: header, response: body) }
+  let(:http) { double(:http_client, response_header: header, response: body) }
 
   before do
     now = Time.now
@@ -13,7 +13,7 @@ describe EM::Kannel::Response do
   describe "#status" do
     it "returns the status code" do
       started = Time.now - 10
-      http = mock(:http_client, response_header: header)
+      http = double(:http_client, response_header: header)
 
       response = EM::Kannel::Response.new(http, started)
       response.status.should == 202
@@ -29,7 +29,7 @@ describe EM::Kannel::Response do
     end
 
     context "other status codes" do
-      let(:header) { mock(:header, status: "500") }
+      let(:header) { double(:header, status: "500") }
 
       it "returns false" do
         response = EM::Kannel::Response.new(http)
